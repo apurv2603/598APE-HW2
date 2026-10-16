@@ -1,6 +1,5 @@
 CXX := g++
-CXXFLAGS := -std=c++17 -Wall -Wextra -I include -I. 
-
+CXXFLAGS := -std=c++17 -Wall -Wextra -I include -I. -O3 -march=native -g
 # Directories
 SRC_DIR := src
 INC_DIR := include
@@ -17,7 +16,7 @@ BENCH_SRC := $(BENCH_DIR)/genetic_benchmark.cpp
 BENCH_BIN := genetic_benchmark
 
 # Default target
-all: directories $(BENCH_BIN) 
+all: directories $(BENCH_BIN)
 
 # Create necessary directories
 directories:
@@ -29,10 +28,10 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 	@echo "Compiling $<..."
 	@$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# build benchmark lib 
+# build benchmark lib
 $(BENCH_BIN): $(BENCH_SRC) $(OBJS)
 	@echo "Building benchmark program..."
-	@$(CXX) $(CXXFLAGS) $< $(OBJS) -o $@ 
+	@$(CXX) $(CXXFLAGS) $< $(OBJS) -o $@
 
 # Clean build files
 clean:
@@ -42,4 +41,4 @@ clean:
 # Clean and rebuild
 rebuild: clean all
 
-.PHONY: all clean rebuild directories 
+.PHONY: all clean rebuild directories

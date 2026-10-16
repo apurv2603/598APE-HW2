@@ -1,0 +1,24 @@
+Notes · TXT
+OPTIMIZATION 1: COMPILER FLAGS
+
+Original Makefile had no -O flag (compiled at -O0).
+
+KEPT (housing times)
+- Baseline -O0: 241.5 s
+- -O2: 120.5 s (2.0x). Registers instead of stack, inlining, dead-code removal.
+- -O3: 72.3 s (3.3x). Aggressive inlining and loop vectorization.
+- -march=native: 58.7 s (4.1x). Uses the CPU's wider vector instructions (AVX2/AVX-512) and FMA.
+- -g: no speed cost. Adds debug symbols for perf.
+
+Final flags: -O3 -march=native -g
+
+SKIPPED
+- -flto: 58.8 s, no gain. Hot code likely already in one file or inlined.
+- -ffast-math: no meaningful gain (housing 58.6 s; silk-wave ~3 s faster, within noise). Not worth the risk to floating-point results.
+
+CORRECTNESS
+- MSE matches baseline to 5-6 significant digits; same formulas evolved (identical node counts).
+- Small differences come from FMA (enabled by -march=native), which rounds once instead of twice.
+
+TAKEAWAY
+~4x from flags, then plateaued. Remaining cost is structural (tree-walking evaluation), so next step is profiling with perf.
