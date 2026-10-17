@@ -1,0 +1,27 @@
+OPTIMIZATION 3: OPENMP PARALLELISM (src/program.cpp, Makefile)
+
+WHY
+- perf after Opt 2 (diabetes): execute_kernel 51%
+- So formula evaluation is ~90% of runtime. Everything else (program/node copying, etc.) ~3%.
+- Each program's evaluation is independent, so the outer loop over programs can run in parallel. This speeds up both the kernel and the libm calls.
+
+CHANGE
+- Added above the outer pid loop in execute_kernel:
+  #pragma omp parallel for schedule(dynamic)
+- Added -fopenmp to CXXFLAGS.
+- Safe: threads only read shared input data, each has its own stack, and each writes to its own slice of y_pred. No races.
+
+
+RESULTS (Opt 2 -> Opt 3, speedup; total speedup vs baseline)
+- diabetes:    1.32 s -> 0.40 s (3.3x); total 51.6x
+- cancer:      18.1 s -> 12.4 s (1.5x); total 10.3x
+- housing:     20.5 s -> 5.87 s (3.5x); total 41.1x
+- silk-wave:   31.0 s -> 13.1 s (2.4x); total 29.9x
+- square-wave: 97.7 s -> 38.9 s (2.5x); total 31.1x
+
+CORRECTNESS
+- MSE output identical to Opt 2 (diff empty). Same computation, just on different cores.
+
+OBSERVATIONS
+- Diabetes also scaled well (3.3x) despite being small, so its serial part is small too.
+- Cancer scaled poorly (1.5x): a large serial part outside execute_kernel. It also gained least in Opt 2.

@@ -1,0 +1,28 @@
+OPTIMIZATION 2: STACK FIX (src/reg_stack.h)
+
+WHY
+- perf after Opt 1 (diabetes): execute_kernel was 80% of runtime.
+- Inside it: push 39.5%, evaluate_node 22.2%, pop 10.3%.
+
+PROBLEM
+- push looped over all 20 slots (MaxSize) with a compare each time, just to write one value.
+- pop looped from the bottom up until it found the top.
+
+CHANGE
+- Replaced with a normal array + index:
+  push: if (elements_ < MaxSize) regs_[elements_++] = val;
+  pop:  if (elements_ > 0) return regs_[--elements_]; return 0;
+
+RESULTS (Opt 1 -> Opt 2, speedup; total speedup vs baseline)
+- diabetes:    5.05 s -> 1.32 s (3.8x); total 15.5x
+- cancer:      34.5 s -> 18.1 s (1.9x); total 7.1x
+- housing:     58.7 s -> 20.5 s (2.9x); total 11.8x
+- silk-wave:   84.1 s -> 31.0 s (2.7x); total 12.6x
+- square-wave: 262.7 s -> 97.7 s (2.7x); total 12.4x
+
+CORRECTNESS
+- MSE output identical to Opt 1 (diff empty). Only data storage changed, no math.
+
+OBSERVATIONS
+- A small code change gave a bigger speedup than all compiler flags combined, found directly from the profile.
+- Cancer improved least (1.9x): something outside execute_kernel likely takes a bigger share there (possibly the logLoss metric, since it's the only classification task). To check with perf.

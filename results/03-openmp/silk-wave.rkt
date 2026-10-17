@@ -19,7 +19,7 @@
 (define height 256)
 ;;Training 3 models per channel, 128 candidates, 16 generations per model
 (define-channel (red X)
-;; red model 0, seed 2025000000, training MSE 1.2865288e-06, test MSE 1.27825183e-06, nodes 6
+;; red model 0, seed 2025000000, training MSE 1.28652164e-06, test MSE 1.2782491e-06, nodes 6
   ((lambda (X)
   (define (div a b) (if (< (abs b) 0.001) 1.0 (/ a b)))
   (define (fdim a b) (max (- a b) 0.0))
@@ -40,7 +40,7 @@
   (define (gp-log a) (if (< (abs a) 0.001) 0.0 (log (abs a))))
   (define (gp-sqrt a) (sqrt (abs a)))
   (abs  (abs  (sin  (*  (list-ref X 0) (list-ref X 1)) ) ) ) ) (model-input X))
-;; red model 1, seed 2025000001, training MSE 1.2865288e-06, test MSE 1.27825183e-06, nodes 6
+;; red model 1, seed 2025000001, training MSE 1.28652164e-06, test MSE 1.2782491e-06, nodes 6
   ((lambda (X)
   (define (div a b) (if (< (abs b) 0.001) 1.0 (/ a b)))
   (define (fdim a b) (max (- a b) 0.0))
@@ -61,7 +61,7 @@
   (define (gp-log a) (if (< (abs a) 0.001) 0.0 (log (abs a))))
   (define (gp-sqrt a) (sqrt (abs a)))
   (abs  (abs  (sin  (*  (list-ref X 0) (list-ref X 1)) ) ) ) ) (model-input X))
-;; red model 2, seed 2025000002, training MSE 0.103207432, test MSE 0.103396647, nodes 1
+;; red model 2, seed 2025000002, training MSE 0.103212692, test MSE 0.103396416, nodes 1
   ((lambda (X)
   (define (div a b) (if (< (abs b) 0.001) 1.0 (/ a b)))
   (define (fdim a b) (max (- a b) 0.0))
@@ -83,9 +83,9 @@
   (define (gp-sqrt a) (sqrt (abs a)))
   0.594603419) (model-input X))
 )
-;; red averaged test MSE: 0.0114920465
+;; red averaged test MSE: 0.0114920801
 (define-channel (green X)
-;; green model 0, seed 2025000003, training MSE 1.12915689e-06, test MSE 1.12929263e-06, nodes 3
+;; green model 0, seed 2025000003, training MSE 1.12920213e-06, test MSE 1.12930798e-06, nodes 3
   ((lambda (X)
   (define (div a b) (if (< (abs b) 0.001) 1.0 (/ a b)))
   (define (fdim a b) (max (- a b) 0.0))
@@ -106,7 +106,7 @@
   (define (gp-log a) (if (< (abs a) 0.001) 0.0 (log (abs a))))
   (define (gp-sqrt a) (sqrt (abs a)))
   (abs  (sin  (list-ref X 0)) ) ) (model-input X))
-;; green model 1, seed 2025000004, training MSE 1.12915689e-06, test MSE 1.12929263e-06, nodes 3
+;; green model 1, seed 2025000004, training MSE 1.12920213e-06, test MSE 1.12930798e-06, nodes 3
   ((lambda (X)
   (define (div a b) (if (< (abs b) 0.001) 1.0 (/ a b)))
   (define (fdim a b) (max (- a b) 0.0))
@@ -127,7 +127,7 @@
   (define (gp-log a) (if (< (abs a) 0.001) 0.0 (log (abs a))))
   (define (gp-sqrt a) (sqrt (abs a)))
   (abs  (sin  (list-ref X 0)) ) ) (model-input X))
-;; green model 2, seed 2025000005, training MSE 1.12915689e-06, test MSE 1.12929263e-06, nodes 3
+;; green model 2, seed 2025000005, training MSE 1.12920213e-06, test MSE 1.12930798e-06, nodes 3
   ((lambda (X)
   (define (div a b) (if (< (abs b) 0.001) 1.0 (/ a b)))
   (define (fdim a b) (max (- a b) 0.0))
@@ -149,9 +149,9 @@
   (define (gp-sqrt a) (sqrt (abs a)))
   (abs  (sin  (list-ref X 0)) ) ) (model-input X))
 )
-;; green averaged test MSE: 1.12930081e-06
+;; green averaged test MSE: 1.12930672e-06
 (define-channel (blue X)
-;; blue model 0, seed 2025000006, training MSE 0.0716430098, test MSE 0.0716653466, nodes 8
+;; blue model 0, seed 2025000006, training MSE 0.0716455206, test MSE 0.0716654807, nodes 8
   ((lambda (X)
   (define (div a b) (if (< (abs b) 0.001) 1.0 (/ a b)))
   (define (fdim a b) (max (- a b) 0.0))
@@ -172,7 +172,7 @@
   (define (gp-log a) (if (< (abs a) 0.001) 0.0 (log (abs a))))
   (define (gp-sqrt a) (sqrt (abs a)))
   (sin  (abs  (sin  (abs  (sin  (*  0.891656637 (list-ref X 1)) ) ) ) ) ) ) (model-input X))
-;; blue model 1, seed 2025000007, training MSE 0.0716430098, test MSE 0.0716653466, nodes 8
+;; blue model 1, seed 2025000007, training MSE 0.0716455206, test MSE 0.0716654807, nodes 8
   ((lambda (X)
   (define (div a b) (if (< (abs b) 0.001) 1.0 (/ a b)))
   (define (fdim a b) (max (- a b) 0.0))
@@ -193,7 +193,7 @@
   (define (gp-log a) (if (< (abs a) 0.001) 0.0 (log (abs a))))
   (define (gp-sqrt a) (sqrt (abs a)))
   (sin  (abs  (sin  (abs  (sin  (*  0.891656637 (list-ref X 1)) ) ) ) ) ) ) (model-input X))
-;; blue model 2, seed 2025000008, training MSE 0.0716430098, test MSE 0.0716653466, nodes 8
+;; blue model 2, seed 2025000008, training MSE 0.0716455206, test MSE 0.0716654807, nodes 8
   ((lambda (X)
   (define (div a b) (if (< (abs b) 0.001) 1.0 (/ a b)))
   (define (fdim a b) (max (- a b) 0.0))
@@ -215,8 +215,8 @@
   (define (gp-sqrt a) (sqrt (abs a)))
   (sin  (abs  (sin  (abs  (sin  (*  0.891656637 (list-ref X 1)) ) ) ) ) ) ) (model-input X))
 )
-;; blue averaged test MSE: 0.0716653466
-;; RGB averaged test MSE (before display clamping): 0.0277195088
+;; blue averaged test MSE: 0.0716654807
+;; RGB averaged test MSE (before display clamping): 0.0277195628
 
 (define (to-byte value)
   (exact-round (* 255.0 (max 0.0 (min 1.0 value)))))
@@ -239,4 +239,4 @@
   (command-line
     #:args ([output "reconstructed.png"])
     (render output)))
-;;Time(Symbolic Image Reconstruction (End-to-End)) = 81.614928520 sec
+;;Time(Symbolic Image Reconstruction (End-to-End)) = 13.070132634 sec

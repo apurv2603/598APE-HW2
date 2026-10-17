@@ -1,0 +1,503 @@
+# To display the perf.data header info, please use --header/--header-only options.
+#
+#
+# Total Lost Samples: 0
+#
+# Samples: 22K of event 'cpu/cycles/P'
+# Event count (approx.): 14327290084
+#
+# Overhead  Command          Shared Object         Symbol                                                                                                                                                                                                                                                              
+# ........  ...............  ....................  ....................................................................................................................................................................................................................................................................
+#
+    80.35%  genetic_benchma  genetic_benchmark     [.] void genetic::execute_kernel<20>(genetic::program*, float const*, float*, unsigned long, unsigned long)
+            |          
+            |--39.53%--push (inlined)
+            |          execute_kernel<> (inlined)
+            |          |          
+            |           --39.53%--execute (inlined)
+            |                     find_batched_fitness (inlined)
+            |                     set_batched_fitness (inlined)
+            |                     cpp_evolve (inlined)
+            |                     symFit (inlined)
+            |                     run_symbolic_regression (inlined)
+            |                     main
+            |                     0x71ca6eb8d1c9
+            |                     __libc_start_main
+            |                     _start
+            |          
+            |--22.18%--evaluate_node (inlined)
+            |          execute_kernel<> (inlined)
+            |          |          
+            |           --22.18%--execute (inlined)
+            |                     find_batched_fitness (inlined)
+            |                     set_batched_fitness (inlined)
+            |                     cpp_evolve (inlined)
+            |                     symFit (inlined)
+            |                     run_symbolic_regression (inlined)
+            |                     main
+            |                     0x71ca6eb8d1c9
+            |                     __libc_start_main
+            |                     _start
+            |          
+            |--10.28%--pop (inlined)
+            |          execute_kernel<> (inlined)
+            |          execute (inlined)
+            |          find_batched_fitness (inlined)
+            |          set_batched_fitness (inlined)
+            |          cpp_evolve (inlined)
+            |          symFit (inlined)
+            |          run_symbolic_regression (inlined)
+            |          main
+            |          0x71ca6eb8d1c9
+            |          __libc_start_main
+            |          _start
+            |          
+            |--5.47%--execute_kernel<> (inlined)
+            |          execute (inlined)
+            |          find_batched_fitness (inlined)
+            |          set_batched_fitness (inlined)
+            |          cpp_evolve (inlined)
+            |          symFit (inlined)
+            |          run_symbolic_regression (inlined)
+            |          main
+            |          0x71ca6eb8d1c9
+            |          __libc_start_main
+            |          _start
+            |          
+             --2.74%--arity (inlined)
+                       execute_kernel<> (inlined)
+                       execute (inlined)
+                       find_batched_fitness (inlined)
+                       set_batched_fitness (inlined)
+                       cpp_evolve (inlined)
+                       symFit (inlined)
+                       run_symbolic_regression (inlined)
+                       main
+                       0x71ca6eb8d1c9
+                       __libc_start_main
+                       _start
+
+     1.00%  genetic_benchma  libm.so.6             [.] fdimf32
+            |
+            ---fdimf32
+               evaluate_node (inlined)
+               execute_kernel<> (inlined)
+               execute (inlined)
+               find_batched_fitness (inlined)
+               set_batched_fitness (inlined)
+               cpp_evolve (inlined)
+               symFit (inlined)
+               run_symbolic_regression (inlined)
+               main
+               0x71ca6eb8d1c9
+               __libc_start_main
+               _start
+
+     0.93%  genetic_benchma  genetic_benchmark     [.] cosf@plt
+            |
+            ---cosf@plt
+               evaluate_node (inlined)
+               execute_kernel<> (inlined)
+               execute (inlined)
+               find_batched_fitness (inlined)
+               set_batched_fitness (inlined)
+               cpp_evolve (inlined)
+               symFit (inlined)
+               run_symbolic_regression (inlined)
+               main
+               0x71ca6eb8d1c9
+               __libc_start_main
+               _start
+
+     0.76%  genetic_benchma  libm.so.6             [.] 0x000000000007def4
+            |
+            ---0x71ca6ef1aef4
+               evaluate_node (inlined)
+               execute_kernel<> (inlined)
+               execute (inlined)
+               find_batched_fitness (inlined)
+               set_batched_fitness (inlined)
+               cpp_evolve (inlined)
+               symFit (inlined)
+               run_symbolic_regression (inlined)
+               main
+               0x71ca6eb8d1c9
+               __libc_start_main
+               _start
+
+     0.74%  genetic_benchma  genetic_benchmark     [.] sinf@plt
+            |
+            ---sinf@plt
+               evaluate_node (inlined)
+               execute_kernel<> (inlined)
+               execute (inlined)
+               find_batched_fitness (inlined)
+               set_batched_fitness (inlined)
+               cpp_evolve (inlined)
+               symFit (inlined)
+               run_symbolic_regression (inlined)
+               main
+               0x71ca6eb8d1c9
+               __libc_start_main
+               _start
+
+     0.64%  genetic_benchma  libm.so.6             [.] 0x000000000007def0
+            |
+            ---0x71ca6ef1aef0
+               evaluate_node (inlined)
+               execute_kernel<> (inlined)
+               execute (inlined)
+               find_batched_fitness (inlined)
+               set_batched_fitness (inlined)
+               cpp_evolve (inlined)
+               symFit (inlined)
+               run_symbolic_regression (inlined)
+               main
+               0x71ca6eb8d1c9
+               __libc_start_main
+               _start
+
+     0.60%  genetic_benchma  libm.so.6             [.] 0x000000000007e398
+            |
+            ---0x71ca6ef1b398
+               evaluate_node (inlined)
+               execute_kernel<> (inlined)
+               execute (inlined)
+               find_batched_fitness (inlined)
+               set_batched_fitness (inlined)
+               cpp_evolve (inlined)
+               symFit (inlined)
+               run_symbolic_regression (inlined)
+               main
+               0x71ca6eb8d1c9
+               __libc_start_main
+               _start
+
+     0.60%  genetic_benchma  libm.so.6             [.] 0x000000000007deda
+            |
+            ---0x71ca6ef1aeda
+               evaluate_node (inlined)
+               execute_kernel<> (inlined)
+               execute (inlined)
+               find_batched_fitness (inlined)
+               set_batched_fitness (inlined)
+               cpp_evolve (inlined)
+               symFit (inlined)
+               run_symbolic_regression (inlined)
+               main
+               0x71ca6eb8d1c9
+               __libc_start_main
+               _start
+
+     0.57%  genetic_benchma  libm.so.6             [.] 0x000000000007dec2
+            |
+            ---0x71ca6ef1aec2
+               evaluate_node (inlined)
+               execute_kernel<> (inlined)
+               execute (inlined)
+               find_batched_fitness (inlined)
+               set_batched_fitness (inlined)
+               cpp_evolve (inlined)
+               symFit (inlined)
+               run_symbolic_regression (inlined)
+               main
+               0x71ca6eb8d1c9
+               __libc_start_main
+               _start
+
+     0.54%  genetic_benchma  libm.so.6             [.] 0x000000000007deb4
+            |
+            ---0x71ca6ef1aeb4
+               evaluate_node (inlined)
+               execute_kernel<> (inlined)
+               execute (inlined)
+               find_batched_fitness (inlined)
+               set_batched_fitness (inlined)
+               cpp_evolve (inlined)
+               symFit (inlined)
+               run_symbolic_regression (inlined)
+               main
+               0x71ca6eb8d1c9
+               __libc_start_main
+               _start
+
+     0.52%  genetic_benchma  libm.so.6             [.] 0x000000000007e34d
+            |
+            ---0x71ca6ef1b34d
+               evaluate_node (inlined)
+               execute_kernel<> (inlined)
+               execute (inlined)
+               find_batched_fitness (inlined)
+               set_batched_fitness (inlined)
+               cpp_evolve (inlined)
+               symFit (inlined)
+               run_symbolic_regression (inlined)
+               main
+               0x71ca6eb8d1c9
+               __libc_start_main
+               _start
+
+     0.51%  genetic_benchma  libm.so.6             [.] 0x000000000007deeb
+            |
+            ---0x71ca6ef1aeeb
+               evaluate_node (inlined)
+               execute_kernel<> (inlined)
+               execute (inlined)
+               find_batched_fitness (inlined)
+               set_batched_fitness (inlined)
+               cpp_evolve (inlined)
+               symFit (inlined)
+               run_symbolic_regression (inlined)
+               main
+               0x71ca6eb8d1c9
+               __libc_start_main
+               _start
+
+     0.50%  genetic_benchma  libm.so.6             [.] 0x000000000007e857
+            |
+            ---0x71ca6ef1b857
+               evaluate_node (inlined)
+               execute_kernel<> (inlined)
+               execute (inlined)
+               find_batched_fitness (inlined)
+               set_batched_fitness (inlined)
+               cpp_evolve (inlined)
+               symFit (inlined)
+               run_symbolic_regression (inlined)
+               main
+               0x71ca6eb8d1c9
+               __libc_start_main
+               _start
+
+     0.43%  genetic_benchma  libm.so.6             [.] 0x000000000007e81d
+     0.43%  genetic_benchma  libm.so.6             [.] 0x000000000007e394
+     0.43%  genetic_benchma  libm.so.6             [.] 0x000000000007e853
+     0.38%  genetic_benchma  libm.so.6             [.] 0x000000000007e3c6
+     0.38%  genetic_benchma  [unknown]             [k] 0xffffffffa340943d
+     0.36%  genetic_benchma  genetic_benchmark     [.] genetic::program::operator=(genetic::program const&)
+     0.35%  genetic_benchma  libm.so.6             [.] 0x000000000007e80c
+     0.33%  genetic_benchma  libm.so.6             [.] 0x000000000007e845
+     0.33%  genetic_benchma  genetic_benchmark     [.] genetic::node::operator=(genetic::node const&)
+     0.32%  genetic_benchma  libm.so.6             [.] 0x000000000007e830
+     0.30%  genetic_benchma  libm.so.6             [.] 0x000000000007e360
+     0.29%  genetic_benchma  libm.so.6             [.] 0x000000000007e33c
+     0.28%  genetic_benchma  libm.so.6             [.] 0x000000000007e3d2
+     0.28%  genetic_benchma  libm.so.6             [.] 0x000000000007e386
+     0.27%  genetic_benchma  libm.so.6             [.] 0x000000000007e886
+     0.25%  genetic_benchma  libm.so.6             [.] 0x000000000007e413
+     0.20%  genetic_benchma  libm.so.6             [.] 0x000000000007e892
+     0.20%  genetic_benchma  libm.so.6             [.] 0x000000000007e3e5
+     0.20%  genetic_benchma  libm.so.6             [.] 0x000000000007e330
+     0.18%  genetic_benchma  libm.so.6             [.] 0x000000000007decc
+     0.17%  genetic_benchma  genetic_benchmark     [.] genetic::get_subtree(genetic::node*, int, PhiloxEngine&)
+     0.16%  genetic_benchma  libm.so.6             [.] 0x000000000007e3dd
+     0.14%  genetic_benchma  libm.so.6             [.] 0x000000000007e404
+     0.14%  genetic_benchma  libm.so.6             [.] 0x000000000007de82
+     0.14%  genetic_benchma  libm.so.6             [.] 0x000000000007e905
+     0.14%  genetic_benchma  libm.so.6             [.] 0x000000000007e38f
+     0.14%  genetic_benchma  libm.so.6             [.] 0x000000000007dee2
+     0.14%  genetic_benchma  libm.so.6             [.] 0x000000000007de63
+     0.13%  genetic_benchma  libm.so.6             [.] 0x000000000007e800
+     0.13%  genetic_benchma  libm.so.6             [.] 0x000000000007e3b7
+     0.13%  genetic_benchma  libm.so.6             [.] 0x000000000007e40f
+     0.12%  genetic_benchma  libm.so.6             [.] 0x000000000007e8a5
+     0.11%  genetic_benchma  genetic_benchmark     [.] fdimf@plt
+     0.11%  genetic_benchma  libm.so.6             [.] 0x000000000007e8dc
+     0.11%  genetic_benchma  libm.so.6             [.] 0x000000000007de98
+     0.11%  genetic_benchma  libm.so.6             [.] 0x000000000007dea5
+     0.10%  genetic_benchma  libm.so.6             [.] 0x000000000007e371
+     0.10%  genetic_benchma  libm.so.6             [.] 0x000000000007deb9
+     0.10%  genetic_benchma  genetic_benchmark     [.] genetic::get_depth(genetic::program const&)
+     0.09%  genetic_benchma  libm.so.6             [.] 0x000000000007dea2
+     0.09%  genetic_benchma  libm.so.6             [.] 0x000000000007e89d
+     0.09%  genetic_benchma  libm.so.6             [.] 0x000000000007de50
+     0.09%  genetic_benchma  genetic_benchmark     [.] genetic::node::node()
+     0.09%  genetic_benchma  libm.so.6             [.] 0x000000000007e901
+     0.08%  genetic_benchma  libm.so.6             [.] 0x000000000007e41c
+     0.08%  genetic_benchma  libm.so.6             [.] 0x000000000007e3a0
+     0.07%  genetic_benchma  libm.so.6             [.] 0x000000000007deaa
+     0.07%  genetic_benchma  libc.so.6             [.] 0x000000000019973a
+     0.06%  genetic_benchma  libm.so.6             [.] 0x000000000007e445
+     0.06%  genetic_benchma  libm.so.6             [.] 0x000000000007e3fc
+     0.06%  genetic_benchma  libm.so.6             [.] 0x000000000007e441
+     0.06%  genetic_benchma  libm.so.6             [.] 0x000000000007e84e
+     0.06%  genetic_benchma  libm.so.6             [.] 0x000000000007e3f1
+     0.05%  genetic_benchma  genetic_benchmark     [.] void genetic::meanSquareError<float>(unsigned long, unsigned long, float const*, float const*, float const*, float*)
+     0.05%  genetic_benchma  libm.so.6             [.] 0x000000000007e8c4
+     0.05%  genetic_benchma  libm.so.6             [.] 0x000000000007e8f6
+     0.05%  genetic_benchma  libm.so.6             [.] 0x000000000007e860
+     0.05%  genetic_benchma  libm.so.6             [.] 0x000000000007deb0
+     0.05%  genetic_benchma  libm.so.6             [.] 0x000000000007de8e
+     0.05%  genetic_benchma  libm.so.6             [.] 0x000000000007e400
+     0.05%  genetic_benchma  libm.so.6             [.] 0x000000000007e382
+     0.04%  genetic_benchma  libm.so.6             [.] 0x000000000007e877
+     0.04%  genetic_benchma  [unknown]             [k] 0xffffffffa3000ef0
+     0.04%  genetic_benchma  libm.so.6             [.] 0x000000000007dede
+     0.04%  genetic_benchma  genetic_benchmark     [.] philox_random_uint32
+     0.04%  genetic_benchma  libm.so.6             [.] 0x000000000007e8b1
+     0.04%  genetic_benchma  libm.so.6             [.] 0x000000000007de7b
+     0.04%  genetic_benchma  libm.so.6             [.] 0x000000000007e351
+     0.04%  genetic_benchma  libc.so.6             [.] cfree
+     0.03%  genetic_benchma  genetic_benchmark     [.] int& std::deque<int, std::allocator<int> >::emplace_back<int>(int&&) [clone .isra.0]
+     0.03%  genetic_benchma  libm.so.6             [.] 0x000000000007e436
+     0.03%  genetic_benchma  libm.so.6             [.] 0x000000000007e427
+     0.03%  genetic_benchma  libm.so.6             [.] 0x000000000007e3ec
+     0.03%  genetic_benchma  libm.so.6             [.] 0x000000000007e821
+     0.03%  genetic_benchma  libm.so.6             [.] 0x000000000007e841
+     0.03%  genetic_benchma  libm.so.6             [.] 0x000000000007e8cf
+     0.03%  genetic_benchma  genetic_benchmark     [.] genetic::program::program(genetic::program const&)
+     0.03%  genetic_benchma  genetic_benchmark     [.] genetic::node::is_nonterminal() const
+     0.03%  genetic_benchma  libm.so.6             [.] 0x000000000007e8e7
+     0.03%  genetic_benchma  libm.so.6             [.] 0x000000000007e8d3
+     0.03%  genetic_benchma  libm.so.6             [.] 0x000000000007ded1
+     0.03%  genetic_benchma  genetic_benchmark     [.] logf@plt
+     0.03%  genetic_benchma  libm.so.6             [.] 0x000000000007e458
+     0.03%  genetic_benchma  libm.so.6             [.] 0x000000000007e450
+     0.02%  genetic_benchma  libm.so.6             [.] 0x000000000007e3cb
+     0.02%  genetic_benchma  libm.so.6             [.] 0x000000000007e838
+     0.02%  genetic_benchma  libm.so.6             [.] 0x000000000007e8f2
+     0.02%  genetic_benchma  libm.so.6             [.] 0x000000000007de58
+     0.02%  genetic_benchma  genetic_benchmark     [.] genetic::node::arity() const
+     0.02%  genetic_benchma  [unknown]             [k] 0xffffffffa34f7150
+     0.02%  genetic_benchma  libm.so.6             [.] 0x000000000007e8bc
+     0.02%  genetic_benchma  libm.so.6             [.] 0x000000000007e35c
+     0.02%  genetic_benchma  genetic_benchmark     [.] genetic::tournament_kernel(std::vector<genetic::program, std::allocator<genetic::program> > const&, int*, int, int, int, int, int, float)
+     0.01%  genetic_benchma  libc.so.6             [.] malloc
+     0.01%  genetic_benchma  genetic_benchmark     [.] insertionSortPrograms(genetic::program*, int)
+     0.01%  genetic_benchma  libm.so.6             [.] 0x000000000007de9e
+     0.01%  genetic_benchma  libm.so.6             [.] 0x000000000007de90
+     0.01%  genetic_benchma  libm.so.6             [.] 0x000000000007e368
+     0.01%  genetic_benchma  libm.so.6             [.] 0x000000000007e8ac
+     0.01%  genetic_benchma  libm.so.6             [.] 0x000000000007e3be
+     0.01%  genetic_benchma  libc.so.6             [.] 0x00000000000ab115
+     0.01%  genetic_benchma  libc.so.6             [.] 0x00000000000a9bdd
+     0.01%  genetic_benchma  genetic_benchmark     [.] genetic::crossover(genetic::program const&, genetic::program const&, genetic::program&, genetic::param const&, PhiloxEngine&)
+     0.01%  genetic_benchma  genetic_benchmark     [.] genetic::build_program(genetic::program&, genetic::param const&, PhiloxEngine&)
+     0.01%  genetic_benchma  libm.so.6             [.] 0x000000000007e43c
+     0.01%  genetic_benchma  [unknown]             [k] 0xffffffffa4721894
+     0.01%  genetic_benchma  libc.so.6             [.] 0x00000000000abe00
+     0.01%  genetic_benchma  libm.so.6             [.] 0x000000000007e910
+     0.01%  genetic_benchma  libm.so.6             [.] 0x000000000007e432
+     0.01%  genetic_benchma  [unknown]             [k] 0xffffffffa4734a35
+     0.01%  genetic_benchma  [unknown]             [k] 0xffffffffa4714180
+     0.01%  genetic_benchma  [unknown]             [k] 0xffffffffa3000b90
+     0.01%  genetic_benchma  libm.so.6             [.] 0x000000000007e40a
+     0.01%  genetic_benchma  libm.so.6             [.] 0x000000000007e87e
+     0.01%  genetic_benchma  libm.so.6             [.] 0x000000000007e91c
+     0.01%  genetic_benchma  [unknown]             [k] 0xffffffffa34b924c
+     0.01%  genetic_benchma  libm.so.6             [.] 0x000000000007e8c0
+     0.01%  genetic_benchma  [unknown]             [k] 0xffffffffa335d2f8
+     0.01%  genetic_benchma  [unknown]             [k] 0xffffffffa4714186
+     0.01%  genetic_benchma  libc.so.6             [.] 0x00000000000a9be3
+     0.01%  genetic_benchma  libc.so.6             [.] 0x00000000000599b9
+     0.00%  genetic_benchma  libc.so.6             [.] 0x00000000000ac61e
+     0.00%  genetic_benchma  libc.so.6             [.] 0x00000000000ab0a9
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa4734947
+     0.00%  genetic_benchma  libc.so.6             [.] 0x00000000000ac205
+     0.00%  genetic_benchma  libc.so.6             [.] 0x00000000000ab3a8
+     0.00%  genetic_benchma  libc.so.6             [.] 0x00000000000abdf0
+     0.00%  genetic_benchma  libm.so.6             [.] 0x000000000007e8fc
+     0.00%  genetic_benchma  libstdc++.so.6.0.33   [.] operator new[](unsigned long)
+     0.00%  genetic_benchma  libc.so.6             [.] 0x00000000000ac5b3
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa36fc908
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa34a91f0
+     0.00%  genetic_benchma  libm.so.6             [.] 0x000000000007e418
+     0.00%  genetic_benchma  libc.so.6             [.] 0x00000000000ab2e8
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa344df5a
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffc043a651
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa47218bf
+     0.00%  genetic_benchma  libc.so.6             [.] 0x00000000000abdd6
+     0.00%  genetic_benchma  libc.so.6             [.] 0x00000000000aac1c
+     0.00%  genetic_benchma  libc.so.6             [.] 0x00000000000ab8b5
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa33a1a1b
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa353b554
+     0.00%  genetic_benchma  libc.so.6             [.] 0x00000000000abbca
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa47141a6
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa3832b1a
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa3833a57
+     0.00%  genetic_benchma  libm.so.6             [.] 0x000000000007e3a4
+     0.00%  genetic_benchma  libm.so.6             [.] 0x000000000007e88b
+     0.00%  genetic_benchma  libm.so.6             [.] 0x000000000007e513
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa3799554
+     0.00%  genetic_benchma  libm.so.6             [.] 0x000000000007e8ca
+     0.00%  genetic_benchma  libc.so.6             [.] 0x00000000000ac28c
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa471418a
+     0.00%  genetic_benchma  libm.so.6             [.] 0x000000000007e3e9
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa3833a6b
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa3575d03
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa3001588
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa34ab80b
+     0.00%  genetic_benchma  genetic_benchmark     [.] genetic::cpp_evolve(std::vector<genetic::program, std::allocator<genetic::program> > const&, std::vector<genetic::program, std::allocator<genetic::program> >&, int, float const*, float const*, float const*, genetic::param const&, int, int)
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa357c278
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa34ab3d2
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa34b7b20
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa357c20a
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa3471079
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa33fa3bf
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa344e565
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa355f78d
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa358ef8f
+     0.00%  genetic_benchma  libm.so.6             [.] 0x000000000007de75
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa349d051
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa3593528
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa471da41
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa47067d7
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa34ad86a
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa34b8f6c
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa34b927a
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa34db8ed
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa3544eb4
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa473493c
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa33af920
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa34d9420
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa375dbf2
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa34b9211
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa34ab316
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa34d9a35
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa3595383
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa34b9707
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa3574880
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa34a527e
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa34b9665
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa33edd1c
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa3761d33
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa344e445
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa3575c3e
+     0.00%  genetic_benchma  libc.so.6             [.] 0x00000000000ab910
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa344e440
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa34c3414
+     0.00%  genetic_benchma  libc.so.6             [.] 0x00000000000ac526
+     0.00%  genetic_benchma  libm.so.6             [.] 0x000000000007e346
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa355f78f
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa3574d6a
+     0.00%  genetic_benchma  genetic_benchmark     [.] std::_Deque_base<int, std::allocator<int> >::_M_initialize_map(unsigned long)
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa4736b20
+     0.00%  genetic_benchma  libc.so.6             [.] 0x00000000000ac4be
+     0.00%  genetic_benchma  libc.so.6             [.] 0x00000000000ac4f2
+     0.00%  genetic_benchma  genetic_benchmark     [.] std::vector<std::vector<float, std::allocator<float> >, std::allocator<std::vector<float, std::allocator<float> > > >::vector(std::vector<std::vector<float, std::allocator<float> >, std::allocator<std::vector<float, std::allocator<float> > > > const&)
+     0.00%  genetic_benchma  libc.so.6             [.] 0x00000000000abf56
+     0.00%  genetic_benchma  libc.so.6             [.] 0x00000000000abd94
+     0.00%  genetic_benchma  genetic_benchmark     [.] genetic::node::node(genetic::node const&)
+     0.00%  genetic_benchma  libc.so.6             [.] 0x0000000000050e71
+     0.00%  genetic_benchma  libc.so.6             [.] 0x0000000000050ee1
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa36795dd
+     0.00%  genetic_benchma  libstdc++.so.6.0.33   [.] std::istream::sentry::sentry(std::istream&, bool)@plt
+     0.00%  genetic_benchma  libstdc++.so.6.0.33   [.] std::basic_istream<char, std::char_traits<char> >& std::getline<char, std::char_traits<char>, std::allocator<char> >(std::basic_istream<char, std::char_traits<char> >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, char)
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa3785271
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa37f80b0
+     0.00%  genetic_benchma  ld-linux-x86-64.so.2  [.] 0x000000000000fa22
+     0.00%  genetic_benchma  ld-linux-x86-64.so.2  [.] 0x000000000000aad4
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa38b7111
+     0.00%  genetic_benchma  ld-linux-x86-64.so.2  [.] 0x000000000000f407
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffc0694ec0
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa3785285
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa35bd9a4
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa3b1622d
+     0.00%  genetic_benchma  ld-linux-x86-64.so.2  [.] 0x000000000001a58f
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa471418e
+     0.00%  genetic_benchma  [unknown]             [k] 0xffffffffa4724099
+
+
+#
+# (Cannot load tips.txt file, please install perf!)
+#
