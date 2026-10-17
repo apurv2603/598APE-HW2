@@ -9,7 +9,7 @@
 ;;Best program 1 details:
 ;;- Length: 28 nodes
 ;;- Depth: 7
-;;- Raw fitness: 0.659993
+;;- Raw fitness: 0.659991
 ;;- Test MSE: 0.64586
 (define best-program-1 (lambda (X)
   (define (div a b) (if (< (abs b) 0.001) 1.0 (/ a b)))
@@ -34,7 +34,7 @@
 ;;Best program 2 details:
 ;;- Length: 23 nodes
 ;;- Depth: 5
-;;- Raw fitness: 0.754434
+;;- Raw fitness: 0.754433
 ;;- Test MSE: 0.728984
 (define best-program-2 (lambda (X)
   (define (div a b) (if (< (abs b) 0.001) 1.0 (/ a b)))
@@ -56,4 +56,4 @@
   (define (gp-log a) (if (< (abs a) 0.001) 0.0 (log (abs a))))
   (define (gp-sqrt a) (sqrt (abs a)))
   (*  (cos  (sin  (gp-log  (+  (list-ref X 0) (list-ref X 0)) ) ) )  (-  (gp-log  (fdim  (*  (list-ref X 2) (list-ref X 0))  (fdim  (list-ref X 0) (list-ref X 6)) ) )  (-  (cos  (abs  (list-ref X 2)) )  (sin  (cos  (list-ref X 3)) ) ) ) ) ))
-;;Time(Symbolic Regression (End-to-End)) = 4.305699860 sec
+;;Time(Symbolic Regression (End-to-End)) = 4.447297186 sec

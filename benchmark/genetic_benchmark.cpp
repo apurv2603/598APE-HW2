@@ -192,16 +192,19 @@ void insertionSortPrograms(genetic::program *programs, int size) {
     }
   }
 
-  // do insertion sort
-  for (int i = 1; i < size; i++) {
-    genetic::program key(programs[i]);
-    int j = i - 1;
+  std::vector<int> idx(size);
+  std::iota(idx.begin(), idx.end(), 0);
+  std::stable_sort(idx.begin(), idx.end(), [&](int a, int b) {
+    return programs[a].raw_fitness_ < programs[b].raw_fitness_;
+  });
 
-    while (j >= 0 && (programs[j].raw_fitness_ > key.raw_fitness_)) {
-      programs[j + 1] = programs[j];
-      j--;
-    }
-    programs[j + 1] = key;
+  std::vector<genetic::program> sorted;
+  sorted.reserve(size);
+  for (int i = 0; i < size; ++i) {
+    sorted.push_back(programs[idx[i]]);
+  }
+  for (int i = 0; i < size; ++i) {
+    programs[i] = sorted[i];
   }
 }
 

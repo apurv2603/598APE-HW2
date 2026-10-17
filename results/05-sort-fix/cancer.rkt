@@ -1,16 +1,16 @@
 #lang racket
 
-;;===== Symbolic Regression Benchmark =====
+;;===== Symbolic Classification Benchmark =====
 
 (provide best-program-1 best-program-2)
 ;;Loading dataset...
-;;Dataset dimensions: 20640 samples x 8 features
-;;Training symbolic regressor with 512 population size and 16 generations
+;;Dataset dimensions: 569 samples x 30 features
+;;Training symbolic classifier with 16384 population size and 16 generations 
 ;;Best program 1 details:
-;;- Length: 28 nodes
-;;- Depth: 7
-;;- Raw fitness: 0.659991
-;;- Test MSE: 0.64586
+;;- Length: 20 nodes
+;;- Depth: 5
+;;- Raw fitness: 0.15991
+;;- Test accuracy: 0.946903
 (define best-program-1 (lambda (X)
   (define (div a b) (if (< (abs b) 0.001) 1.0 (/ a b)))
   (define (fdim a b) (max (- a b) 0.0))
@@ -30,12 +30,12 @@
   (define (rsqrt a) (/ 1.0 (sqrt (abs a))))
   (define (gp-log a) (if (< (abs a) 0.001) 0.0 (log (abs a))))
   (define (gp-sqrt a) (sqrt (abs a)))
-  (*  (cos  (sin  (gp-log  (+  (list-ref X 0) (list-ref X 0)) ) ) )  (-  (gp-log  (fdim  (*  (list-ref X 2) (list-ref X 0))  (fdim  (list-ref X 0) (list-ref X 6)) ) )  (-  (cos  (abs  (list-ref X 2)) )  (sin  (cos  (fdim  (*  (list-ref X 5) 0.798811913)  (gp-log  (list-ref X 0)) ) ) ) ) ) ) ))
+  (-  (+  (cos  (*  (list-ref X 21) (list-ref X 7)) )  (-  (*  (fdim  (list-ref X 24) (list-ref X 27))  (-  (list-ref X 22) (list-ref X 13)) )  (*  (list-ref X 21) (list-ref X 7)) ) )  (cos  (gp-sqrt  (list-ref X 22)) ) ) ))
 ;;Best program 2 details:
-;;- Length: 23 nodes
+;;- Length: 20 nodes
 ;;- Depth: 5
-;;- Raw fitness: 0.754433
-;;- Test MSE: 0.728984
+;;- Raw fitness: 0.15991
+;;- Test accuracy: 0.946903
 (define best-program-2 (lambda (X)
   (define (div a b) (if (< (abs b) 0.001) 1.0 (/ a b)))
   (define (fdim a b) (max (- a b) 0.0))
@@ -55,5 +55,5 @@
   (define (rsqrt a) (/ 1.0 (sqrt (abs a))))
   (define (gp-log a) (if (< (abs a) 0.001) 0.0 (log (abs a))))
   (define (gp-sqrt a) (sqrt (abs a)))
-  (*  (cos  (sin  (gp-log  (+  (list-ref X 0) (list-ref X 0)) ) ) )  (-  (gp-log  (fdim  (*  (list-ref X 2) (list-ref X 0))  (fdim  (list-ref X 0) (list-ref X 6)) ) )  (-  (cos  (abs  (list-ref X 2)) )  (sin  (cos  (list-ref X 3)) ) ) ) ) ))
-;;Time(Symbolic Regression (End-to-End)) = 4.508324609 sec
+  (+  (cos  (*  (list-ref X 21) (list-ref X 7)) )  (-  (-  (*  (fdim  (list-ref X 24) (list-ref X 27))  (-  (list-ref X 22) (list-ref X 13)) )  (*  (list-ref X 21) (list-ref X 7)) )  (cos  (gp-sqrt  (list-ref X 22)) ) ) ) ))
+;;Time(Symbolic Classification (End-to-End)) = 6.063348045 sec

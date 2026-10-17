@@ -1,0 +1,34 @@
+OPTIMIZATION 5: SORT FIX (benchmark/genetic_benchmark.cpp, insertionSortPrograms)
+
+WHY
+- Cancer scaled poorly with OpenMP (1.5x) and batching (1.07x), so profiled it separately.
+- perf on cancer: program::operator= 11.2%, node::operator= 10.1%, malloc/free/new ~5%, node::node() 1.9%. Program copying ~28% of CPU time, more than execute_kernel (24%).
+- Caller graph: 99% of program::operator= came from insertionSortPrograms (called from run_symbolic_classification).
+- Runs on one core while the other 3 sit idle, so its wall-clock share is even larger than its CPU %.
+
+PROBLEM
+- Insertion sort on the program array itself. Every shift (programs[j + 1] = programs[j]) is a full deep copy: free old node array, allocate new one, construct and copy every node.
+- Up to ~n^2/4 deep copies per sort.
+
+CHANGE
+- Sort an array of indices instead: std::iota fills idx = [0, 1, ..., n-1], then std::stable_sort orders idx by raw_fitness_.
+- Then copy each program once into a temp vector in sorted order, and once back.
+- Deep copies: ~n^2/4 -> exactly 2n. Sorting work: O(n^2) -> O(n log n) on integers.
+- stable_sort keeps ties in original order, same as insertion sort, so the final order is identical.
+- Function name kept so the 3 call sites don't change.
+
+RESULTS (Opt 4 -> Opt 5, speedup; total speedup vs baseline)
+- cancer:      11.6 s -> 6.06 s (1.91x); total 21x
+- diabetes:    0.309 s -> 0.304 s (no change)
+- housing:     4.43 s -> 4.45 s (no change)
+- silk-wave:   9.9 s -> 9.8 s (no change)
+- square-wave: 28.6 s -> 28.8 s (no change)
+
+CORRECTNESS
+- Cancer full output (excluding timing) compared with Opt 4.
+- [Add result of the all-stages check script with 05-sort-fix included.]
+
+OBSERVATIONS
+- ~10-line algorithmic fix nearly halved cancer's runtime.
+- Only cancer benefited. The other benchmarks also call the sort, but its cost there is negligible: likely a smaller population size and/or a much larger evaluation cost per run, so the sort is a tiny share.
+- Shows why profiling each benchmark separately matters: cancer's bottleneck was a completely different kind (serial algorithmic hotspot) than the others (evaluation speed).
