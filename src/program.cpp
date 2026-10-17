@@ -21,36 +21,39 @@ namespace genetic {
 template <int MaxSize = MAX_STACK_SIZE>
 void execute_kernel(const program_t d_progs, const float *data, float *y_pred,
                     const uint64_t n_rows, const uint64_t n_progs) {
-  #pragma omp parallel for schedule(dynamic)
-  for (uint64_t pid = 0; pid < n_progs; ++pid) {
-    for (uint64_t row_id = 0; row_id < n_rows; ++row_id) {
+                        constexpr int BATCH = 256;
+                        #pragma omp parallel for schedule(dynamic)
+                          for (uint64_t pid = 0; pid < n_progs; ++pid) {
+                            float buf[MaxSize][BATCH];
+                            program_t curr_p = d_progs + pid;
 
-      stack<float, MaxSize> eval_stack;
-      program_t curr_p = d_progs + pid; // Current program
+                            for (uint64_t start = 0; start < n_rows; start += BATCH) {
+                              int n = std::min<uint64_t>(BATCH, n_rows - start);
+                              int top = 0;
 
-      int end = curr_p->len - 1;
-      node *curr_node = curr_p->nodes + end;
+                              for (int i = curr_p->len - 1; i >= 0; --i) {
+                                const node &nd = curr_p->nodes[i];
+                                if (detail::is_nonterminal(nd.t)) {
+                                  int ar = detail::arity(nd.t);
+                                  float *a = buf[top - 1];                     // in[0] = first pop
+                                  float *b = (ar > 1) ? buf[top - 2] : a;      // in[1] = second pop
+                                  top -= ar;
+                                  float *o = buf[top++];
+                                  for (int j = 0; j < n; ++j) {
+                                    float in[2] = {a[j], b[j]};
+                                    o[j] = detail::evaluate_node(nd, data, n_rows, start + j, in);
+                                  }
+                                } else {
+                                  float *o = buf[top++];
+                                  for (int j = 0; j < n; ++j) {
+                                    o[j] = detail::evaluate_node(nd, data, n_rows, start + j, nullptr);
+                                  }
+                                }
+                              }
 
-      float res = 0.0f;
-      float in[2] = {0.0f, 0.0f};
-
-      while (end >= 0) {
-        if (detail::is_nonterminal(curr_node->t)) {
-          int ar = detail::arity(curr_node->t);
-          in[0] = eval_stack.pop(); // Min arity of function is 1
-          if (ar > 1)
-            in[1] = eval_stack.pop();
-        }
-        res = detail::evaluate_node(*curr_node, data, n_rows, row_id, in);
-        eval_stack.push(res);
-        curr_node--;
-        end--;
-      }
-
-      // Outputs stored in col-major format
-      y_pred[pid * n_rows + row_id] = eval_stack.pop();
-    }
-  }
+                              for (int j = 0; j < n; ++j) y_pred[pid * n_rows + start + j] = buf[0][j];
+                            }
+                          }
 }
 
 program::program()

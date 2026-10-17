@@ -1,0 +1,42 @@
+OPTIMIZATION 4: BATCHED EVALUATION LOOP (src/program.cpp, execute_kernel)
+
+WHY
+- perf after Opt 3 (housing): execute_kernel 42%, libm math calls (sin, cos, log, ...) 49%. Formula evaluation ~91% of runtime.
+- Old loop order: for each program -> for each row -> walk whole formula with a new stack.
+- Same formula re-walked for every row: new stack, push/pop, and evaluate_node's switch on node type, all repeated per row.
+
+CHANGE
+- Flipped the loop order: for each program -> for each batch of 256 rows -> for each node -> for each row in batch.
+- Stack now holds batches (float buf[20][256], 20 KB per thread) instead of single values.
+- Push/pop happen once per node per batch instead of once per node per row (~256x fewer).
+- One stack buffer per program, reused, instead of a new stack per row.
+- Inner loop runs the same node 256 times in a row, so branches are predictable.
+- Still calls the same evaluate_node per value, so the math is unchanged.
+- 256 rows keeps buffers small enough to stay in cache.
+- OpenMP parallelism over programs kept.
+
+RESULTS (Opt 3 -> Opt 4, speedup; total speedup vs baseline)
+- diabetes:    0.397 s -> 0.309 s (1.28x); total 66x
+- cancer:      12.4 s -> 11.6 s (1.07x); total 11x
+- housing:     5.87 s -> 4.43 s (1.33x); total 55x
+- silk-wave:   13.1 s -> 9.9 s (1.32x); total 39x
+- square-wave: 38.9 s -> 28.6 s (1.36x); total 42x
+
+CORRECTNESS
+- Full output (formulas + metrics, excluding timing) identical to Opt 3 on all 5 benchmarks.
+
+OBSERVATIONS
+- Consistent ~1.3x on evaluation-heavy benchmarks.
+- Cancer barely moved: its bottleneck is insertionSortPrograms (O(n^2) deep program copies, ~25% of CPU time, serial), not evaluation.
+- libm (~half of housing's time) is untouched: each sin/cos call costs the same, just reordered.
+
+NOT DONE (potential next steps)
+- apply_op: move the switch outside the row loop so each operation is its own tight loop. Would let GCC use vectorized sin/cos/log (libmvec) with -ffast-math. Skipped for scope: ~40 more lines, and needs -ffast-math, which changes evolved formulas (see below).
+- -ffast-math retest on the batched loop: housing 4.51 s -> 4.31 s (~4.5%, single run, borderline noise). Not adopted.
+- Sort fix for cancer: replace insertion sort (deep copy per shift) with index-based stable_sort + one rearrangement. Identical output, ~10 lines.
+
+CORRECTNESS CHECK ACROSS ALL STAGES
+- 00 -> 01: diabetes and housing identical; cancer, silk-wave, square-wave differ by FMA rounding from -march=native (last digits).
+- 01 -> 02 -> 03 -> 04: all 5 benchmarks identical at every step.
+- The check caught a measurement mistake: the original stage 01 square-wave output came from a leftover -ffast-math build. Its MSE matched fast-math values exactly, and two green models evolved 2-node formulas instead of 1-node. Regenerated from the opt1-flags tag; now identical to stage 02.
+- Shows -ffast-math can change which formulas evolve, not just last digits. Another reason it was dropped.

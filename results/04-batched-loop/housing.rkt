@@ -56,4 +56,4 @@
   (define (gp-log a) (if (< (abs a) 0.001) 0.0 (log (abs a))))
   (define (gp-sqrt a) (sqrt (abs a)))
   (*  (cos  (sin  (gp-log  (+  (list-ref X 0) (list-ref X 0)) ) ) )  (-  (gp-log  (fdim  (*  (list-ref X 2) (list-ref X 0))  (fdim  (list-ref X 0) (list-ref X 6)) ) )  (-  (cos  (abs  (list-ref X 2)) )  (sin  (cos  (list-ref X 3)) ) ) ) ) ))
-;;Time(Symbolic Regression (End-to-End)) = 20.305885808 sec
+;;Time(Symbolic Regression (End-to-End)) = 4.429714927 sec
