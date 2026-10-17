@@ -1,4 +1,28 @@
-# 598APE-HW2
+# 598APE-HW2: Optimized Symbolic Regression (Artifact)
+
+Steven Xiao (sx37), Apurv Aditya Singhdeo (apurvas3)
+
+This section describes our artifact for Mini-Paper 2. The original course
+README follows below it.
+
+## Build and run
+
+Everything needed to build is in `docker/Dockerfile` (unchanged from the
+course image; g++ with OpenMP is all our changes need).
+
+```bash
+./dockerbuild.sh                     # once
+./dockerrun.sh                       # opens a shell; the repo is mounted at /host
+cd /host
+make clean && make -j
+./genetic_benchmark diabetes         # also: cancer, housing, silk-wave, square-wave
+```
+
+The end-to-end time is the last line of the output:
+`;;Time(... (End-to-End)) = X sec`. On a course VM you can run the same
+commands without Docker.
+
+---
 
 This repository contains code for homework 2 of 598APE.
 
